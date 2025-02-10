@@ -1,5 +1,4 @@
-# Internet-Banking-Microservices-Project
-# **Internet Banking System - Microservices Architecture**  
+# **Internet-Banking-Microservices-Project**
  
 ## **Table of Contents**  
 - [Overview](#overview)  
@@ -29,7 +28,8 @@ The system follows a distributed architecture where each service handles a speci
 ## **Architecture**  
 The system follows a **microservices-based architecture** with independent services for banking operations.  
  
-![Architecture Diagram](./architecture.png)  
+![Architecture Diagram-bank-microservices](https://github.com/user-attachments/assets/2cdfbb1f-25eb-4368-990d-4714988d9d37)
+  
  
 **Microservices:**  
 1. **Banking Core Service:** Manages accounts and balances.  
