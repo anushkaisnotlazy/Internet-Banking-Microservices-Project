@@ -1,9 +1,21 @@
 package com.anushka.transactionservice.model;
 
-import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
@@ -15,9 +27,20 @@ public class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@NotEmpty(message = "Account number cannot be empty.")
+	@Size(max = 20, message = "Account number cannot exceed 20 characters.")
 	private String accountNumber;
+
+	@NotNull(message = "Amount is required.")
+	@Positive(message = "Amount must be positive.")
 	private double amount;
+
+	@NotEmpty(message = "Transaction type cannot be empty.")
+	@Pattern(regexp = "DEPOSIT|WITHDRAWAL", message = "Transaction type must be either DEPOSIT or WITHDRAWAL.")
 	private String type; // "DEPOSIT" or "WITHDRAWAL"
+
+	@NotNull(message = "Timestamp is required.")
 	private LocalDateTime timestamp;
 
 	public Long getId() {

@@ -17,42 +17,45 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.anushka.bankcore.model.Account;
 import com.anushka.bankcore.service.AccountService;
- 
+
+/**
+ * REST controller for managing accounts.
+ */
 @RestController
 @RequestMapping("/accounts")
 public class AccountController {
- 
-    @Autowired
-    private AccountService accountService;
- 
-    @PostMapping("/register")//http://localhost:8081/accounts/register
-    public ResponseEntity<Account> createAccount(@RequestBody Account account) {
-        return ResponseEntity.ok(accountService.createAccount(account));
-    }
-    
-    @GetMapping("/details/{id}")//http://localhost:8081/accounts/details/{id}
-    public ResponseEntity<Account> getAccountById(@PathVariable Long id) {
-        Account account = accountService.getAccountById(id);
-        return new ResponseEntity<>(account, HttpStatus.OK);
-    }
- 
-    @GetMapping
-    public ResponseEntity<List<Account>> getAllAccounts() {
-        return ResponseEntity.ok(accountService.getAllAccounts());
-    }
- 
-    @GetMapping("/{accountNumber}")//http://localhost:8081/accounts/{accountNumber}
-    public ResponseEntity<Optional<Account>> getAccountByNumber(@PathVariable String accountNumber) {
-    	Optional<Account> account = accountService.getAccountByNumber(accountNumber);
-    	if(account==null) {
-    		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-    	}
-        return ResponseEntity.ok(account);
-    }
-    @DeleteMapping("/remove/{id}")//http://localhost:8081/accounts/remove/{id}
-    public ResponseEntity<String> deleteAccount(@PathVariable Long id) {
-        accountService.deleteAccount(id);
-        return new ResponseEntity<>("Account deleted successfully!", HttpStatus.OK);
-    }
-   
+
+	@Autowired
+	private AccountService accountService;
+
+	/**
+	 * Registers a new account.
+	 * 
+	 * @param account the account to be created
+	 * @return the created account  
+	 * 
+	 * @param accountNumber the account number
+	 * @return the account details
+	 */
+	@GetMapping("/{accountNumber}") // http://localhost:8081/accounts/{accountNumber}
+	public ResponseEntity<Optional<Account>> getAccountByNumber(@PathVariable String accountNumber) {
+		Optional<Account> account = accountService.getAccountByNumber(accountNumber);
+		if (account == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		}
+		return ResponseEntity.ok(account);
+	}
+
+	/**
+	 * Deletes an account by ID.
+	 * 
+	 * @param id the ID of the account to be deleted
+	 * @return a confirmation message
+	 */
+	@DeleteMapping("/remove/{id}") // http://localhost:8081/accounts/remove/{id}
+	public ResponseEntity<String> deleteAccount(@PathVariable Long id) {
+		accountService.deleteAccount(id);
+		return new ResponseEntity<>("Account deleted successfully!", HttpStatus.OK);
+	}
+
 }

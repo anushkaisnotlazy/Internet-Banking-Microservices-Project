@@ -14,4 +14,6 @@ public interface UserService {
 	User updateUser(Long id, UserDTO userDTO);
 
 	AccountDTO getAccountDTOByUserId(Long userId);
+
+	UserDTO getUserWithAccountDetails(Long userId);
 }

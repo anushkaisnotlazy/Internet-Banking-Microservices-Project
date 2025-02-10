@@ -13,6 +13,10 @@ public class UserDTO {
 	private String email;
 	private int age;
 
+	public UserDTO(String name2, String email2, AccountDTO accountDTO) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getName() {
 		return name;
 	}
