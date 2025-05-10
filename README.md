@@ -122,7 +122,7 @@ The system follows a **microservices-based architecture** with independent servi
 ### **Prerequisites**  
 - Java 17  
 - Spring Boot  
-- PostgreSQL  
+- MySQL Workbench  
 - Docker (Optional for containerization)  
  
 ### **Clone the Repository**  
